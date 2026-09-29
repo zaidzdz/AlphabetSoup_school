@@ -1,48 +1,58 @@
+//Name: Zaid Zamani
+//Date: 09/29/26
+//Description: This program will produce an alphabet soup
+
 public class Soup {
     //these are instance variables 
     private String letters;  
     private String company;  
 
-    //this is a constructor it sets the instance variables (more on this later in the year)
+    // Precondition: none
+    // Postcondition: just creates the class
     public Soup(){
         letters ="";
         company = "none";
     }
 
 
-    //sets the name of the company to the provided name
+    // Precondition: must be valid string and not null
+    // Postcondition: returns nothing but setts the company to your input
     public void setCompany(String company){
         this.company = company;
     }
 
-    //returns the company name
+    // Precondition: the company name must be valid string
+    // Postcondition: returns the companny name
     public String getCompany(){
         return company;
     }
 
-    //returns letters
+    // Precondition: the letters must be a balid string
+    // Postcondition: returns the letters 
     public String getLetters(){
         return letters;
     }
 
 //below are the functions you'll be writing.
 
-    //adds a word to the pool of letters known as "letters"
+    // Precondition: the word string must be valid and not null
+    // Postcondition: adds the word you inputted to the letters variable
     public void add(String word){
         letters += word;
 
     }
 
 
-    //Use Math.random() to get a random character from the letters string and return it.
+    // Precondition: letters var must be valid and not null
+    // Postcondition: returns a random letter from the letters string
     public char randomLetter(){
         
         return letters.charAt((int)(Math.random()*letters.length()));
     }
 
 
-    //returns the letters currently stored with the company name placed directly in the center of all
-    //the letters
+    // Precondition: must be a company and letters
+    // Postcondition: returns the company inbetween the middle of all the letters
     public String companyCentered(){
         int middle = letters.length() / 2;
         String letters_first = letters.substring(0, middle);
@@ -52,7 +62,8 @@ public class Soup {
     }
 
 
-    //should remove the first available vowel from letters. If there are no vowels this method has no effect.
+    // Precondition: there must be letters and it must be a valid string and not null
+    // Postcondition: the first vowel in letters will be removed
     public void removeFirstVowel(){
         for(int index = 0;index<letters.length();index++){
             char current_letter = letters.charAt(index);
@@ -65,18 +76,21 @@ public class Soup {
         
     }
 
-    //should remove "num" letters from a random spot in the string letters. You may assume num never exceeds the length of the string.
+    // Precondition: number must not be longer than the length of the string, must be a valid number
+    // Postcondition: will remove the amount of nums at a random index in the letters string
     public void removeSome(int num){
-        int randomSpot = (int)(Math.random()*letters.length());
-        int randomSpotEnd = Math.min(randomSpot+num, letters.length()-1); //cant go over max index
+        int randomSpot = (int)(Math.random()*(letters.length()-num+1));
+        int randomSpotEnd = randomSpot+num;
         String first = letters.substring(0,randomSpot);
         String second = letters.substring(randomSpotEnd);
         letters = first + second;
 
     }
 
-    //should remove the word "word" from the string letters. If the word is not found in letters then it does nothing.
+    // Precondition:
+    // Postcondition:
     public void removeWord(String word){
-        
+        int wordStart = letters.indexOf(word);
+        letters = letters.substring(0, wordStart) + letters.substring(wordStart + word.length());
     }
 }
