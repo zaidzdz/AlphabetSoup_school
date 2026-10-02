@@ -82,13 +82,13 @@ public class Soup {
         int randomSpot = (int)(Math.random()*(letters.length()-num+1));
         int randomSpotEnd = randomSpot+num;
         String first = letters.substring(0,randomSpot);
-        String second = letters.substring(randomSpotEnd);
+        String second = letters.substring(randomSpot + num);
         letters = first + second;
 
     }
 
-    // Precondition:
-    // Postcondition:
+    // Precondition: word must be a valid strin gand not null
+    // Postcondition: it will remove the word from letters, the first instance of it
     public void removeWord(String word){
         int wordStart = letters.indexOf(word);
         letters = letters.substring(0, wordStart) + letters.substring(wordStart + word.length());
